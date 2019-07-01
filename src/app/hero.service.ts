@@ -10,6 +10,10 @@ import { MessageService } from './message.service';
 import { Hero } from './hero.interface';
 import { HEROES } from './mock-heroes';
 
+const httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
+
 @Injectable({
     providedIn: 'root'
 })
@@ -23,33 +27,54 @@ export class HeroService {
         private messageService: MessageService
     ) { }
 
-    // getHeroes(): Observable<Hero[]> {
-    //     this.messageService.add('HeroService: Fetched Heroes');
-    //     return of(HEROES);
-    // }
-
-    getHeroes(): Observable<Hero[]> {
-        return this.http.get<Hero[]>(this.heroesUrl)
-                                   .pipe(
-                                       tap(_ => this.log('Fetched Heroes')),
-                                       catchError(this.handleError<Hero[]>('getHeroes', []))
-                                   );
+    public getHeroes(): Observable<Hero[]> {
+        return this.http.get<Hero[]>(this.heroesUrl).pipe(
+                        tap(_ => this.log('Fetched Heroes')),
+                        catchError(this.handleError<Hero[]>('getHeroes', []))
+                    );
     }
 
-    getHero(id: number): Observable<Hero> {
+    public getHero(id: number): Observable<Hero> {
         const url = `${this.heroesUrl}/${id}`;
 
-        return this.http.get<Hero>(url)
-                                    .pipe(
-                                        tap(_ => this.log(`Fetched Hero Id: ${id}`)),
-                                        catchError(this.handleError<Hero>(`getHero Id: ${id}` ))
-                                    );
+        return this.http.get<Hero>(url).pipe(
+                        tap(_ => this.log(`Fetched Hero Id: ${id}`)),
+                        catchError(this.handleError<Hero>(`getHero Id: ${id}`))
+                    );
     }
 
-    // getHero(id: number): Observable<Hero> {
-    //     this.messageService.add(`HeroService: Fetched Hero Id=${id}`);
-    //     return of(HEROES.find(hero => hero.id === id));
-    // }
+    public updateHero(hero: Hero): Observable<any> {
+        return this.http.put(this.heroesUrl, hero, httpOptions).pipe(
+                        tap(_ => this.log(`updateHero Id: ${hero.id}`)),
+                        catchError(this.handleError<any>('updateHero'))
+                   );
+    }
+
+    public addHero (hero: Hero): Observable<Hero> {
+        return this.http.post<Hero>(this.heroesUrl, hero, httpOptions).pipe(
+                        tap((newHero: Hero) => this.log(`addHero Id: ${newHero.id}`)),
+                        catchError(this.handleError<Hero>('addHero'))
+                    );
+    }
+
+    public deleteHero(hero: Hero | number): Observable<Hero> {
+        const id = typeof hero === 'number' ? hero : hero.id;
+        const url = `${this.heroesUrl}/${id}`;
+
+        return this.http.delete<Hero>(url, httpOptions).pipe(
+                        tap(_ => this.log(`deleteHero Id: ${id}`)),
+                        catchError(this.handleError<Hero>('deleteHero'))
+                    );
+    }
+
+    public searchHeroes(term: string): Observable<Hero[]> {
+        if (!term.trim()) { return of ([]); }
+
+        return this.http.get<Hero[]>(`${this.heroesUrl}/?name=${term}`).pipe(
+                        tap(_ => this.log(`searchHeroes Term: ${term}`)),
+                        catchError(this.handleError<Hero[]>('searchHeroes', []))
+                    );
+    }
 
     private log(message: string) {
         this.messageService.add(`HeroService: ${message}`);
@@ -63,14 +88,10 @@ export class HeroService {
  */
 private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
+      console.error(error);
 
-      // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
-
-      // TODO: better job of transforming error for user consumption
       this.log(`${operation} failed: ${error.message}`);
 
-      // Let the app keep running by returning an empty result.
       return of(result as T);
     };
   }

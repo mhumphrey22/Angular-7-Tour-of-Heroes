@@ -16,6 +16,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 
 //  Services
 import { InMemoryDataService } from './in-memory-data.service';
+import { HeroSearchComponent } from './hero-search/hero-search.component';
 
 @NgModule({
     declarations: [
@@ -23,7 +24,8 @@ import { InMemoryDataService } from './in-memory-data.service';
         HeroesComponent,
         HeroDetailComponent,
         MessagesComponent,
-        DashboardComponent
+        DashboardComponent,
+        HeroSearchComponent
     ],
     imports: [
         AppRoutingModule,
