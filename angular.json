@@ -32,6 +32,14 @@
             "scripts": []
           },
           "configurations": {
+            "staging": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.staging.ts"
+                }
+              ]
+            },
             "production": {
               "fileReplacements": [
                 {
@@ -64,6 +72,9 @@
             "browserTarget": "angular-tour-of-heroes:build"
           },
           "configurations": {
+            "staging": {
+              "browserTarget": "angular-tour-of-heroes:build:staging"
+            },
             "production": {
               "browserTarget": "angular-tour-of-heroes:build:production"
             }
