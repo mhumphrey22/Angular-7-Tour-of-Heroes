@@ -3,10 +3,10 @@ import { Observable, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
 //  Services
-import { HeroService } from '../hero.service';
+import { HeroService } from '../../services/HeroService/hero.service';
 
 //  Interfaces
-import { Hero } from '../hero.interface';
+import { Hero } from '../../models/hero.interface';
 
 @Component({
     selector: 'app-hero-search',
