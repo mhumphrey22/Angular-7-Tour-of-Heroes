@@ -1,12 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-//  Browser Animations
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-//  Flex Layouts
-import { FlexLayoutModule } from '@angular/flex-layout';
-
 //  Material
 import { MatAutocompleteModule } from '@angular/material';
 import { MatButtonToggleModule } from '@angular/material';
@@ -33,11 +27,11 @@ import { MatTabsModule } from '@angular/material';
 import { MatToolbarModule } from '@angular/material';
 import { MatTooltipModule } from '@angular/material';
 
+//  Flex Layouts
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 
 const MATERIAL_MODULES = [
-    BrowserAnimationsModule,
-    FlexLayoutModule,
-
     CommonModule,
     MatAutocompleteModule,
     MatButtonModule,
@@ -46,7 +40,7 @@ const MATERIAL_MODULES = [
     MatCheckboxModule,
     MatGridListModule,
     MatInputModule,
-    MatListModule,
+    MatListModule, 
     MatProgressBarModule,
     MatProgressSpinnerModule,
     MatRippleModule,
@@ -65,6 +59,8 @@ const MATERIAL_MODULES = [
     MatSlideToggleModule,
     MatSnackBarModule,
     MatTooltipModule,
+
+    FlexLayoutModule,
 ];
 
 

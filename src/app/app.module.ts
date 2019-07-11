@@ -6,6 +6,7 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 //  Modules
 import { AngularMaterialModule } from './modules/angular-material.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 //  Routing
 import { AppRoutingModule } from './app-routing.module';
@@ -31,14 +32,15 @@ import { InMemoryDataService } from './services/InMemoryDataService/in-memory-da
         MessagesComponent
     ],
     imports: [
-        AngularMaterialModule,
         AppRoutingModule,
         BrowserModule,
+        AngularMaterialModule,
+        BrowserAnimationsModule,
         FormsModule,
         HttpClientModule,
         HttpClientInMemoryWebApiModule.forRoot(
             InMemoryDataService, { dataEncapsulation: false }
-        )
+        ),
     ],
     providers: [],
     bootstrap: [AppComponent]
