@@ -4,6 +4,9 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
+//  Modules
+import { AngularMaterialModule } from './modules/angular-material.module';
+
 //  Routing
 import { AppRoutingModule } from './app-routing.module';
 
@@ -28,6 +31,7 @@ import { InMemoryDataService } from './services/InMemoryDataService/in-memory-da
         MessagesComponent
     ],
     imports: [
+        AngularMaterialModule,
         AppRoutingModule,
         BrowserModule,
         FormsModule,
