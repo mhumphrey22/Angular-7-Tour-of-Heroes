@@ -11,7 +11,9 @@ import { Hero } from '../../models/hero.interface';
 import { HEROES } from '../../data/mock-heroes';
 
 const httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+    })
 };
 
 @Injectable({
@@ -20,7 +22,7 @@ const httpOptions = {
 
 export class HeroService {
 
-    private heroesUrl = 'api/heroes';
+    private heroesUrl = 'https://localhost:44309/api/heroes';
 
     constructor(
         private http: HttpClient,
@@ -28,33 +30,25 @@ export class HeroService {
     ) { }
 
     public getHeroes(): Observable<Hero[]> {
-        return this.http.get<Hero[]>(this.heroesUrl).pipe(
-                        tap(_ => this.log('Fetched Heroes')),
-                        catchError(this.handleError<Hero[]>('getHeroes', []))
-                    );
+        return this.http.get<Hero[]>(this.heroesUrl)
+                                   .pipe(catchError(this.handleError<Hero[]>('getHeroes', [])));
     }
 
     public getHero(id: number): Observable<Hero> {
         const url = `${this.heroesUrl}/${id}`;
 
-        return this.http.get<Hero>(url).pipe(
-                        tap(_ => this.log(`Fetched Hero Id: ${id}`)),
-                        catchError(this.handleError<Hero>(`getHero Id: ${id}`))
-                    );
-    }
-
-    public updateHero(hero: Hero): Observable<any> {
-        return this.http.put(this.heroesUrl, hero, httpOptions).pipe(
-                        tap(_ => this.log(`updateHero Id: ${hero.id}`)),
-                        catchError(this.handleError<any>('updateHero'))
-                   );
+        return this.http.get<Hero>(url)
+                                   .pipe(catchError(this.handleError<Hero>(`getHero Id: ${id}`)));
     }
 
     public addHero (hero: Hero): Observable<Hero> {
-        return this.http.post<Hero>(this.heroesUrl, hero, httpOptions).pipe(
-                        tap((newHero: Hero) => this.log(`addHero Id: ${newHero.id}`)),
-                        catchError(this.handleError<Hero>('addHero'))
-                    );
+        return this.http.post<Hero>(this.heroesUrl, hero, httpOptions)
+                                  .pipe(catchError(this.handleError<Hero>('addHero')));
+    }
+
+    public updateHero(hero: Hero): Observable<any> {
+        return this.http.put(this.heroesUrl, hero, httpOptions)
+                                   .pipe(catchError(this.handleError<any>('updateHero')));
     }
 
     public deleteHero(hero: Hero | number): Observable<Hero> {
