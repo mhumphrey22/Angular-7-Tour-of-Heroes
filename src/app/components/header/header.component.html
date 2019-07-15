@@ -1,0 +1,44 @@
+<mat-toolbar color="primary" fxLayout="row" fxLayoutAlign="space-between center">
+
+    <!--    Title (Left)    -->    
+
+    <div>
+        <h1>{{ headerTitle }}</h1>
+    </div>
+
+    <!--    Search (Center)    -->
+
+    <div fxFlex="33">
+        <mat-form-field fxFlexFill>
+            <mat-icon matPrefix>search</mat-icon>
+
+            <input type="text" 
+                        matInput 
+                        [formControl]="searchControl" 
+                        [matAutocomplete]="auto" 
+                        aria-label="Search for Hero"/>
+    
+            <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayWith">
+                <mat-option *ngFor="let hero of filteredHeroes | async" [value]="hero">
+                    {{ hero.name }}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </div>
+
+    <!--    Navigation (Right)    -->
+
+    <nav>
+        <button mat-button 
+                      routerLink="/dashboard">
+            <mat-icon>dashboard</mat-icon>
+            Dashboard
+        </button>
+
+        <button mat-button
+                       routerLink="/heroes">
+            <mat-icon>people</mat-icon>
+            Heroes
+        </button>
+    </nav>
+</mat-toolbar>

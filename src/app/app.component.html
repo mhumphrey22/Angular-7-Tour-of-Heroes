@@ -1,10 +1,4 @@
-<h1>{{ title }}</h1>
+<app-header></app-header>
 
-<nav>
-	<a routerLink="/dashboard">Dashboard</a>
-	<a routerLink="/heroes">Heroes</a>
-</nav>
-
-<p>App.Component needs to load another Component which will be the new "Root" of the application.  You cannot use AM components in App.component due to the application not being bootstrapped yet.</p>
 <router-outlet></router-outlet>
 <app-messages></app-messages>

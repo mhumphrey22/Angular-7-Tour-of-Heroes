@@ -8,7 +8,6 @@ import { MessageService } from '../MessageService/message.service';
 
 //  Interfaces
 import { Hero } from '../../models/hero.interface';
-import { HEROES } from '../../data/mock-heroes';
 
 const httpOptions = {
     headers: new HttpHeaders({
@@ -30,65 +29,51 @@ export class HeroService {
     ) { }
 
     public getHeroes(): Observable<Hero[]> {
-        const url = this.heroesUrl + '/getHeroes';
-
-        return this.http.get<Hero[]>(url)
+        return this.http.get<Hero[]>(this.heroesUrl)
                                    .pipe(catchError(this.handleError<Hero[]>('getHeroes', [])));
     }
 
     public getHero(id: number): Observable<Hero> {
-        const url = `${this.heroesUrl}/getHero/${id}`;
+        const url = `${this.heroesUrl}/${id}`;
 
         return this.http.get<Hero>(url)
                                    .pipe(catchError(this.handleError<Hero>(`getHero Id: ${id}`)));
     }
 
-    public addHero (hero: Hero): Observable<Hero> {
-        return this.http.post<Hero>(this.heroesUrl, hero, httpOptions)
-                                  .pipe(catchError(this.handleError<Hero>('addHero')));
+    public saveHero (hero: Hero): Observable<Hero> {
+        const url = this.heroesUrl + '/saveHero';
+
+        return this.http.post<Hero>(url, hero, httpOptions)
+                                    .pipe(catchError(this.handleError<Hero>('saveHero')));
     }
 
-    public updateHero(hero: Hero): Observable<any> {
-        return this.http.put(this.heroesUrl, hero, httpOptions)
-                                   .pipe(catchError(this.handleError<any>('updateHero')));
-    }
+    public deleteHero(hero: Hero): Observable<any> {
+        const url = this.heroesUrl + '/deleteHero';
 
-    public deleteHero(hero: Hero | number): Observable<Hero> {
-        const id = typeof hero === 'number' ? hero : hero.id;
-        const url = `${this.heroesUrl}/${id}`;
-
-        return this.http.delete<Hero>(url, httpOptions).pipe(
-                        tap(_ => this.log(`deleteHero Id: ${id}`)),
-                        catchError(this.handleError<Hero>('deleteHero'))
-                    );
+        return this.http.post<Hero>(url, hero, httpOptions)
+                                  .pipe(catchError(this.handleError<Hero>('deleteHero')));
     }
 
     public searchHeroes(term: string): Observable<Hero[]> {
         if (!term.trim()) { return of ([]); }
 
-        return this.http.get<Hero[]>(`${this.heroesUrl}/?name=${term}`).pipe(
-                        tap(_ => this.log(`searchHeroes Term: ${term}`)),
-                        catchError(this.handleError<Hero[]>('searchHeroes', []))
-                    );
+        const url = `${ this.heroesUrl }/search/${ term }`;
+
+        return this.http.get<Hero[]>(url)
+                                  .pipe(catchError(this.handleError<Hero[]>('searchHeroes', [])));
     }
 
     private log(message: string) {
         this.messageService.add(`HeroService: ${message}`);
     }
 
-    /**
- * Handle Http operation that failed.
- * Let the app continue.
- * @param operation - name of the operation that failed
- * @param result - optional value to return as the observable result
- */
-private handleError<T> (operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      console.error(error);
+    private handleError<T> (operation = 'operation', result?: T) {
+        return (error: any): Observable<T> => {
+            console.error(error);
 
-      this.log(`${operation} failed: ${error.message}`);
+            this.log(`${operation} failed: ${error.message}`);
 
-      return of(result as T);
-    };
-  }
+            return of(result as T);
+        };
+    }
 }

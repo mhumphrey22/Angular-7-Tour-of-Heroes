@@ -32,7 +32,7 @@ export class HeroesComponent implements OnInit {
 
         if (!name) { return; }
 
-        this.heroService.addHero({ name } as Hero)
+        this.heroService.saveHero({ name } as Hero)
                                      .subscribe(hero => {
                                          this.heroes.push(hero);
                                      });

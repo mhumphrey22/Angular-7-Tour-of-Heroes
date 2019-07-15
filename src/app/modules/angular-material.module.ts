@@ -16,9 +16,9 @@ import { MatInputModule } from '@angular/material';
 import { MatMenuModule } from '@angular/material';
 import { MatProgressSpinnerModule } from '@angular/material';
 import { MatProgressBarModule } from '@angular/material';
-import { MatRadioModule } from '@angular/material'; 
+import { MatRadioModule } from '@angular/material';
 import { MatRippleModule } from '@angular/material';
-import { MatSelectModule } from '@angular/material'; 
+import { MatSelectModule } from '@angular/material';
 import { MatSlideToggleModule } from '@angular/material';
 import { MatSliderModule } from '@angular/material';
 import { MatSidenavModule } from '@angular/material';
@@ -40,7 +40,7 @@ const MATERIAL_MODULES = [
     MatCheckboxModule,
     MatGridListModule,
     MatInputModule,
-    MatListModule, 
+    MatListModule,
     MatProgressBarModule,
     MatProgressSpinnerModule,
     MatRippleModule,
