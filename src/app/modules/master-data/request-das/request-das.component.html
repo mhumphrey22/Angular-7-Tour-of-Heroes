@@ -1,0 +1,159 @@
+<div>
+
+    <!--    Sub Header Options    -->
+
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+        <app-navigate-back></app-navigate-back>
+    </div>
+
+    <!--    Page TItle    -->
+
+    <div>
+        <h2>DAS – New Material Request</h2>
+    </div>
+
+    <!--    Form    -->
+    
+    <div>
+        <form [formGroup]="dasMaterialForm" (ngSubmit)="onSubmit()" fxLayout="row wrap" fxLayoutGap="20px">
+
+            <mat-form-field appearance="outline" fxFlex="calc(33% - 20px)">
+                <mat-label>Trade Product Code</mat-label>                
+                <mat-select formControlName="tradeProductCode" required>
+                    <mat-option value="1">Option #1</mat-option>
+                    <mat-option value="2">Option #2</mat-option>
+                    <mat-option value="3">Option #3</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" fxFlex="calc(33% - 20px)">
+                <mat-label>Grade</mat-label>                
+                <mat-select formControlName="grade" required>
+                    <mat-option value="1">Option #1</mat-option>
+                    <mat-option value="2">Option #2</mat-option>
+                    <mat-option value="3">Option #3</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" fxFlex="calc(33% - 20px)">
+                <mat-label>Volume</mat-label>                
+                <input matInput 
+                            formControlName="volume"
+                            required/>
+            </mat-form-field>            
+
+            <mat-form-field appearance="outline" fxFlex="calc(33% - 20px)">
+                <mat-label>Trade Product Name</mat-label>                
+                <mat-select formControlName="tradeProductName" required>
+                    <mat-option value="1">Option #1</mat-option>
+                    <mat-option value="2">Option #2</mat-option>
+                    <mat-option value="3">Option #3</mat-option>
+                </mat-select>
+            </mat-form-field>            
+
+            <mat-form-field appearance="outline" fxFlex="calc(33% - 20px)">
+                <mat-label>Package Sizes</mat-label>                
+                <mat-select formControlName="packageSizes" required>
+                    <mat-option value="1">Option #1</mat-option>
+                    <mat-option value="2">Option #2</mat-option>
+                    <mat-option value="3">Option #3</mat-option>
+                </mat-select>
+            </mat-form-field>           
+            
+            <mat-form-field appearance="outline" fxFlex="calc(33% - 20px)">
+                <mat-label>Reference GMID</mat-label>                
+                <input matInput 
+                            formControlName="referenceGMID"
+                            required/>
+            </mat-form-field>
+            
+            <mat-form-field appearance="outline" fxFlex="calc(33% - 20px)">
+                <mat-label>Crop Type</mat-label>                
+                <mat-select formControlName="cropType" required>
+                    <mat-option value="1">Option #1</mat-option>
+                    <mat-option value="2">Option #2</mat-option>
+                    <mat-option value="3">Option #3</mat-option>
+                </mat-select>
+            </mat-form-field>            
+
+            <mat-form-field appearance="outline" fxFlex="calc(33% - 20px)">
+                <mat-label>Treatment</mat-label>                
+                <mat-select formControlName="treatment" required>
+                    <mat-option value="1">Option #1</mat-option>
+                    <mat-option value="2">Option #2</mat-option>
+                    <mat-option value="3">Option #3</mat-option>
+                </mat-select>
+            </mat-form-field>                        
+
+            <mat-form-field appearance="outline" fxFlex="calc(33% - 20px)">
+                <mat-label>Reference Plant</mat-label>                
+                <input matInput 
+                            formControlName="referencePlant"
+                            required/>
+            </mat-form-field>            
+
+            <mat-form-field appearance="outline" fxFlex="calc(50% - 20px)">
+                <mat-label>Manufacturing Plant</mat-label>                
+                <input matInput 
+                            formControlName="manufacturingPlant"
+                            required/>
+            </mat-form-field>
+            
+            <mat-form-field appearance="outline" fxFlex="calc(50% - 20px)">
+                <mat-label>Seed Size</mat-label>                
+                <mat-select formControlName="seedSize" required>
+                    <mat-option value="1">Option #1</mat-option>
+                    <mat-option value="2">Option #2</mat-option>
+                    <mat-option value="3">Option #3</mat-option>
+                </mat-select>
+            </mat-form-field>
+            
+            <mat-form-field appearance="outline" fxFlex="calc(50% - 20px)">
+                <mat-label>Plants of Sale/Shipping</mat-label>                
+                <input matInput 
+                            formControlName="plantsOfSaleShipping"
+                            required/>
+            </mat-form-field>
+            
+            <mat-form-field appearance="outline" fxFlex="calc(50% - 20px)">
+                <mat-label>Gross Weight</mat-label>                
+                <input matInput 
+                            formControlName="grossWeight"
+                            required/>
+            </mat-form-field>
+            
+            <mat-form-field appearance="outline" fxFlex="calc(50% - 20px)">
+                <mat-label>Brand</mat-label>                
+                <mat-select formControlName="brand" required>
+                    <mat-option value="1">Option #1</mat-option>
+                    <mat-option value="2">Option #2</mat-option>
+                    <mat-option value="3">Option #3</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" fxFlex="calc(50% - 20px)">
+                <mat-label>Net Weight</mat-label>                
+                <input matInput 
+                            formControlName="netWeight"
+                            required/>
+            </mat-form-field>
+            
+            <mat-form-field appearance="outline" fxFlex="100">
+                <mat-label>Country of Sale</mat-label>                
+                <mat-select formControlName="countryOfSale" required>
+                    <mat-option value="1">Option #1</mat-option>
+                    <mat-option value="2">Option #2</mat-option>
+                    <mat-option value="3">Option #3</mat-option>
+                </mat-select>
+            </mat-form-field>            
+
+            <button mat-button color="accent" [disabled]="!dasMaterialForm.valid">
+                <mat-icon>save</mat-icon>
+                Save
+            </button>        
+
+        </form>
+    </div>
+
+
+</div>

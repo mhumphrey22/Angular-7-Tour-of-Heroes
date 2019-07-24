@@ -18,6 +18,7 @@ import { HeroesComponent } from './components/heroes/heroes.component';
 import { HeroDetailComponent } from './components/hero-detail/hero-detail.component';
 import { HeroSearchComponent } from './components/hero-search/hero-search.component';
 import { MessagesComponent } from './components/messages/messages.component';
+// import { NavigateBackComponent } from './components/navigate-back/navigate-back.component';
 
 @NgModule({
     declarations: [
@@ -27,7 +28,8 @@ import { MessagesComponent } from './components/messages/messages.component';
         HeroDetailComponent,
         HeroSearchComponent,
         MessagesComponent,
-        HeaderComponent
+        HeaderComponent,
+        // NavigateBackComponent
     ],
     imports: [
         AppRoutingModule,

@@ -1,0 +1,118 @@
+<div>
+    <!--    Sub Header Options    -->
+
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+        <app-navigate-back></app-navigate-back>
+    </div>
+    
+    <!--    Page TItle    -->
+    
+    <div>
+        <h2>PHIBRED – New Material Request</h2>
+    </div>
+    
+    <!--    Form    -->
+        
+    <div class="mat-elevation-z8" style="overflow: auto; padding: 8px;">
+
+        <mat-form-field [floatLabel]="'never'"> 
+            <mat-icon matPrefix>search</mat-icon>
+            <input matInput 
+                        type="text"
+                        [(ngModel)]="value"
+                        (keyup)="applyFilter($event.target.value)"                        
+                        placeholder="Search"/>
+            <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                <mat-icon>close</mat-icon>
+            </button>
+
+        </mat-form-field>
+
+        <table mat-table [dataSource]="dataSource" matSort>
+
+            <!--    Material    -->
+
+            <ng-container matColumnDef="material" sticky>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Material </th>
+                <td mat-cell *matCellDef="let request">{{ request.material }}</td>
+            </ng-container>
+
+            <!--    Brand    -->
+
+            <ng-container matColumnDef="brand">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Brand </th>
+                <td mat-cell *matCellDef="let request">{{ request.brand }}</td>
+            </ng-container>
+
+            <!--    Division    -->            
+
+            <ng-container matColumnDef="division">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Division </th>
+                <td mat-cell *matCellDef="let request">{{ request.division }}</td>
+            </ng-container>
+
+            <!--    Material Group    -->
+
+            <ng-container matColumnDef="materialGroup">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Material Group </th>
+                <td mat-cell *matCellDef="let request">{{ request.materialGroup }}</td>
+            </ng-container>
+
+            <!--    Base Genetic Owner    -->
+
+            <ng-container matColumnDef="baseGeneticOwner">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Base Genetic Owner </th>
+                <td mat-cell *matCellDef="let request">{{ request.baseGeneticOwner }}</td>
+            </ng-container>
+
+            <!--    Region    -->
+
+            <ng-container matColumnDef="region">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Region </th>
+                <td mat-cell *matCellDef="let request">{{ request.region }}</td>
+            </ng-container>
+
+            <!--    Country    -->
+
+            <ng-container matColumnDef="country">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Country </th>
+                <td mat-cell *matCellDef="let request">{{ request.country }}</td>
+            </ng-container>
+
+            <!--    Plant    -->
+
+            <ng-container matColumnDef="plant">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Plant </th>
+                <td mat-cell *matCellDef="let request">{{ request.plant }}</td>
+            </ng-container>            
+
+            <!--    Old Material Number    -->
+
+            <ng-container matColumnDef="oldMaterialNumber">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Old Material Number </th>
+                <td mat-cell *matCellDef="let request">{{ request.oldMaterialNumber }}</td>
+            </ng-container>            
+
+            <!--    PHI #    -->
+            
+            <ng-container matColumnDef="phiNum">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> PHI # </th>
+                <td mat-cell *matCellDef="let request">{{ request.phiNumber }}</td>
+            </ng-container>            
+
+            <!--    CRM    -->
+            
+            <ng-container matColumnDef="crm">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> CRM </th>
+                <td mat-cell *matCellDef="let request">{{ request.crm }}</td>
+            </ng-container>            
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[ 5, 10, 25, 50, 75, 100 ]" showFirstLastButtons></mat-paginator>
+
+    </div>
+</div>

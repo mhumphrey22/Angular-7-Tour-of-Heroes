@@ -1,0 +1,19 @@
+table {
+    width: 100%;
+}
+
+.mat-table-sticky:first-child {
+    border-right: 1px solid #e0e0e0;
+}
+
+// th.mat-column-position, td.mat-column-position {
+//     padding-left: 8px;
+// }
+
+th,td {
+    overflow: hidden; 
+    width: 200px; 
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-left: 8px !important;
+}
